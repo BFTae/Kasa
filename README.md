@@ -18,6 +18,7 @@ JS: Jakieś dodatkowe rzeczy
 ad1. 
 Może nie być co wydać 
 zapisuje do logow 
+może chcieć wpłacić konkretnie jakimiś banknotami, defaultowo php sam zamieni
 Wpisuje ile chce wpłacić i w jaki banknot daje. Kasa próbuje wydać resztę, może się nie udać! 
 
 
