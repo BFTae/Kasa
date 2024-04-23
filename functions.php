@@ -13,7 +13,7 @@ function GetBanknoty(){
 function Wartosc($banknoty){
     $wartosc=0;
     foreach ($banknoty as $key => $value) {
-        $wartosc=intval($key)*intval($value);
+        $wartosc+=intval($key)*intval($value);
     }
     return $wartosc;
 }
