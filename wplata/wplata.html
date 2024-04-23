@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        Wpłacasz<br>
+        <a href="wyplata.html">Wypłać</a><br>
+        <a href="inwentaryzacja.html">Iwentaryzacja</a><br>
+        <a href="raport.html">Raport</a>
+    </div>
+    <br>
+    <form action="wplata.php" method="get">
+        Kwota do wypłaty:<br><input type="number" name="kwota" min="0.01" step="0.01" placeholder="Podaj kwotę..."><br>
+        Czy chcesz wpisać kwotę banknotami?<input type="checkbox" name="ifbanknotami"><br>
+        <span id="banknotami" style="display: none;">
+
+        </span>
+    </form>
+    <script src="wplata.js"></script>
+</body>
+</html>
