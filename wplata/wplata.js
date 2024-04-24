@@ -3,7 +3,9 @@ span=document.getElementById('banknotami')
 
 function SumofMoney(money){
     sum=0
-
+    for (var key in money) {
+        sum+=parseFloat(key)*parseInt(money[key])
+    }
     return sum
 }
 
@@ -39,14 +41,23 @@ form.ifbanknotami.addEventListener("change",(event)=>{
             input.setAttribute("step","1")
             input.setAttribute("name",key)
             input.setAttribute("value",'0')
+            input.setAttribute("class","money")
             span.appendChild(input)
             span.innerHTML+="<br>"
-            console.log(input)
         }
-        form.kwota.value=SumofMoney(money)
+    moneys=document.getElementsByClassName("money")
+    for (var i = 0; i < moneys.length; i++) {
+        moneys[i].addEventListener("input",function (){
+            money[this.name]=this.value
+            form.kwota.value=SumofMoney(money)
+        })
+    }
     }else{
         span.innerHTML=''
         form.kwota.disabled=false
+        for (var key in money) {
+            money[key]=0
+        }
         show=false
     }
 })
