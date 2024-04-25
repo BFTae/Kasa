@@ -1,6 +1,6 @@
 form=document.getElementsByTagName("form")[0]
 span=document.getElementById('banknotami')
-
+errors=document.getElementById("errors")
 function SumofMoney(money){
     sum=0
     for (var key in money) {
@@ -31,8 +31,8 @@ form.ifbanknotami.addEventListener("change",(event)=>{
     event.preventDefault()
     if(show==false){
         show=true
-        form.kwota.disabled=true
-        form.kwota.value=0
+        form.kwota_dk.readonly=true
+        form.kwota_dk.value=0
         for (var key in money) {
             span.innerHTML+=key+"zł:"
             input=document.createElement("input")
@@ -49,15 +49,34 @@ form.ifbanknotami.addEventListener("change",(event)=>{
     for (var i = 0; i < moneys.length; i++) {
         moneys[i].addEventListener("input",function (){
             money[this.name]=this.value
-            form.kwota.value=SumofMoney(money)
+            form.kwota_dk.value=SumofMoney(money)
         })
     }
     }else{
         span.innerHTML=''
-        form.kwota.disabled=false
+        form.kwota_dk.readonly=false
         for (var key in money) {
             money[key]=0
         }
         show=false
     }
+})
+form.addEventListener("change",(event)=>{
+    change=form.kwota_dk.value-form.kwota_dw.value
+    form.kwota_dk.value=parseFloat(Math.floor(form.kwota_dk.value*100)/100)
+    form.kwota_dw.value=parseFloat(Math.floor(form.kwota_dw.value*100)/100)
+    if(change>0){
+        form.change.value=Math.round(change*100)/100
+    }else{
+        form.change.value=0
+    }
+})
+form.addEventListener("submit",(event)=>{
+    if(form.kwota_dk.value<form.kwota_dw.value){
+        errors.innerHTML="<b>KWOTA DO WPŁACENIA NIE MOŻE BYĆ WIĘKSZA NIŻ KWOTA WKŁADANA DO KASY</b><br>"
+        event.preventDefault()
+        return
+    }
+
+    errors.innerHTML=""
 })
