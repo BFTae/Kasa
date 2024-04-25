@@ -17,3 +17,30 @@ function Wartosc($money){
     }
     return $wartosc;
 }
+
+function Cashify($money){
+    $cash=[
+    "500"=>0,
+    "200"=>0,
+    "100"=>0,
+    "50"=>0,
+    "20"=>0,
+    "10"=>0,
+    "5"=>0,
+    "2"=>0,
+    "1"=>0,
+    "0.5"=>0,
+    "0.2"=>0,
+    "0.1"=>0,
+    "0.05"=>0,
+    "0.02"=>0,
+    "0.01"=>0
+    ];
+    foreach($cash as $key => $value){
+        while($money-floatval($key)){
+            $money-= floatval($key);
+            $cash[$key]+=1;
+        }
+    }
+    return $cash;
+}
