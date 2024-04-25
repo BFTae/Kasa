@@ -44,3 +44,11 @@ function Cashify($money){
     }
     return $cash;
 }
+function SaveMoney($newmoney){
+    $file=fopen("kasa.txt","w");
+    foreach($newmoney as $key => $value){
+        fwrite($file,"$key:$value",strlen("$key:$value"));
+        if($key!="0.01") fwrite($file,"\n",strlen("\n"));
+    }
+    fclose($file);
+}
