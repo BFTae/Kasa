@@ -22,14 +22,15 @@ function GiveChange($money,$change){
     if ($change!=0) {
         return $change;
     }
+    print_r($money);
     SaveMoney($money);
     return $changenom;
 }
 
 function DepositMoney($money,$deposit){
-    $cash=Chashify(0);
+    $cash=Cashify(0);
     if(isset($_POST['ifbanknotami'])==false){
-        $cash=Chashify($deposit);
+        $cash=Cashify($deposit);
     }else{
         foreach ($cash as $key => $value) {
             $cash[$key]=$_POST[str_replace(".","_",$key)];
@@ -40,7 +41,8 @@ function DepositMoney($money,$deposit){
 
 function Handle($money,$deposit,$change){
     $cash=DepositMoney($money,$deposit);
-    $moneypropose=Chashify(0);
+    print_r($cash);
+    $moneypropose=Cashify(0);
     foreach ($money as $key => $value) {
         $moneypropose[$key]=$cash[$key]+$money[$key];
     }
@@ -59,5 +61,5 @@ require dirname(__DIR__).'\functions.php';
 $money=GetMoney();
 $deposit=$_POST['kwota_dw'];
 $change=$_POST['change'];
-
+print_r($money);
 Handle($money,$deposit,$change);

@@ -5,7 +5,7 @@ function GetMoney(){
     $money=[];
     foreach ($linie as $key => $value) {
         $value=explode(":",$value);
-        $banknoty[$value[0]]=$value[1];
+        $money[$value[0]]=$value[1];
     }
     fclose($plik);
     return $money;
@@ -37,7 +37,7 @@ function Cashify($money){
     "0.01"=>0
     ];
     foreach($cash as $key => $value){
-        while($money-floatval($key)){
+        while($money-floatval($key)>=0){
             $money-= floatval($key);
             $cash[$key]+=1;
         }
@@ -45,7 +45,7 @@ function Cashify($money){
     return $cash;
 }
 function SaveMoney($newmoney){
-    $file=fopen("kasa.txt","w");
+    $file=fopen("..\kasa.txt","w");
     foreach($newmoney as $key => $value){
         fwrite($file,"$key:$value",strlen("$key:$value"));
         if($key!="0.01") fwrite($file,"\n",strlen("\n"));
