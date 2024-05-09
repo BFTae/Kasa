@@ -1,6 +1,8 @@
+
 <?php
 
 function GiveChange($money,$change){
+    $changenom=[];
     foreach ($money as $key => $value) {
         while ($value>0) {
             if($change-floatval($key)<0){
@@ -9,28 +11,53 @@ function GiveChange($money,$change){
             $change-=floatval($key);
             $value-=1;
             $money[$key]-=1;
+            if(isset($changenom[$key])==false){
+                $changenom[$key]=1;
+            }else{
+            $changenom[$key]+=1;
+            }
             $change=round($change,2);
         }
     }
-    print_r($money);
-    if ($change!=0) return $change;
-    
-    return 0;
+    if ($change!=0) {
+        return $change;
+    }
+    SaveMoney($money);
+    return $changenom;
 }
 
-function Handle($money,$given,$change){
-    $changeafter=GiveChange($money,$change);
-    if ($changeafter!=0){
-        echo "Nie będę miał jak wydać z $change zł, byłbym Panu winny ".strval($changeafter)."zł";
+function DepositMoney($money,$deposit){
+    $cash=Chashify(0);
+    if(isset($_POST['ifbanknotami'])==false){
+        $cash=Chashify($deposit);
+    }else{
+        foreach ($cash as $key => $value) {
+            $cash[$key]=$_POST[str_replace(".","_",$key)];
+        }
+    }
+    return $cash;
+}
+
+function Handle($money,$deposit,$change){
+    $cash=DepositMoney($money,$deposit);
+    $moneypropose=Chashify(0);
+    foreach ($money as $key => $value) {
+        $moneypropose[$key]=$cash[$key]+$money[$key];
+    }
+    $changeafter=GiveChange($moneypropose,$change);
+    if (is_array($changeafter)==false){
+        echo "Nie będę miał jak wydać z $change zł";
+        return;
+    }
+    echo "Wydaję:<br>";
+    foreach ($changeafter as $key => $value) {
+        echo "$key zł: $value<br>";
     }
 
 }
 require dirname(__DIR__).'\functions.php';
 $money=GetMoney();
-
-
 $deposit=$_POST['kwota_dw'];
-
 $change=$_POST['change'];
 
 Handle($money,$deposit,$change);
