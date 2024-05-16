@@ -52,3 +52,30 @@ function SaveMoney($newmoney){
     }
     fclose($file);
 }
+function Withdraw_GiveChange($money,$withdrawn,$w){
+    $memory=[];
+    foreach ($money as $key => $value) {
+        while ($value>0) {
+            if($withdrawn-floatval($key)<0){
+                break;
+            }
+            $withdrawn-=floatval($key);
+            $value-=1;
+            $money[$key]-=1;
+            if(isset($memory[$key])==false){
+                $memory[$key]=1;
+            }else{
+            $memory[$key]+=1;
+            }
+            $withdrawn=round($withdrawn,2);
+        }
+    }
+    if ($withdrawn!=0) {
+        return $withdrawn;
+    }
+    print_r($money);
+    if($w){
+        SaveMoney($money);
+    }
+    return $memory;
+}
