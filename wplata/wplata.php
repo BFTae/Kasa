@@ -31,6 +31,7 @@ function Handle($money,$deposit,$change){
     foreach ($changeafter as $key => $value) {
         echo "$key zł: $value<br>";
     }
+    Logs(SumofMoney($moneypropose)-SumofMoney($money),true);
 }
 require dirname(__DIR__).'\functions.php';
 $money=GetMoney();

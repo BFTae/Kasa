@@ -10,7 +10,7 @@ function GetMoney(){
     fclose($plik);
     return $money;
 }
-function Wartosc($money){
+function SumofMoney($money){
     $wartosc=0;
     foreach ($money as $key => $value) {
         $wartosc+=intval($key)*intval($value);
@@ -78,4 +78,14 @@ function Withdraw_GiveChange($money,$withdrawn,$w){
         SaveMoney($money);
     }
     return $memory;
+}
+function Logs($amount,$in){
+    $logs=fopen("..\logi.txt","a");
+    if($in){
+        fwrite($logs,"Wplata,".date("Y/m/d h:i:s").",$amount\n");
+    }else{
+        fwrite($logs,"Wyplata,".date("Y/m/d h:i:s").",-$amount\n");
+    }
+    fclose($logs);
+    return;
 }

@@ -31,6 +31,7 @@ function Handle($money,$withdrawn){
     foreach ($moneypropose as $key => $value) {
         echo "$key zł: $value<br>";
     }
+    Logs(SumofMoney($moneypropose),false);
     return;
     
 }
