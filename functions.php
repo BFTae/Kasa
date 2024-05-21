@@ -13,8 +13,9 @@ function GetMoney(){
 function SumofMoney($money){
     $wartosc=0;
     foreach ($money as $key => $value) {
-        $wartosc+=intval($key)*intval($value);
+        $wartosc+=floatval($key)*intval($value);
     }
+    
     return $wartosc;
 }
 
@@ -81,9 +82,12 @@ function Withdraw_GiveChange($money,$withdrawn,$w){
 }
 function Logs($amount,$in){
     $logs=fopen("..\logi.txt","a");
+    
     if($in){
+        echo "Zapisuję $amount";
         fwrite($logs,"Wplata,".date("Y/m/d h:i:s").",$amount\n");
     }else{
+        echo "Zapisuję -$amount";
         fwrite($logs,"Wyplata,".date("Y/m/d h:i:s").",-$amount\n");
     }
     fclose($logs);
