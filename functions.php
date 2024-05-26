@@ -16,6 +16,7 @@ function SumofMoney($money){
         $wartosc+=floatval($key)*intval($value);
     }
     
+    
     return $wartosc;
 }
 

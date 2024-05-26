@@ -33,7 +33,7 @@ function Handle($money,$deposit,$change){
     }
     print_r($moneypropose);
     
-    Logs(SumofMoney($moneypropose)-SumofMoney($money),true);
+    Logs(number_format(SumofMoney($moneypropose)-SumofMoney($money), 2, '.', ""),true);
 }
 require dirname(__DIR__).'\functions.php';
 $money=GetMoney();
