@@ -15,8 +15,6 @@ function SumofMoney($money){
     foreach ($money as $key => $value) {
         $wartosc+=floatval($key)*intval($value);
     }
-    
-    
     return $wartosc;
 }
 
