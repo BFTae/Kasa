@@ -9,10 +9,13 @@ $money=GetMoney();
 echo "<table>";
 echo "<tr><th>Nominał</th><th>Stan fizyczny</th><th>Stan logiczny</th><th>Nadmiar/Niedobór</th></tr>";
 $logiczny=0;
-
+$napis="Wyszstko się zgadza";
 foreach ($cash as $key => $value) {
     $logiczny=$money[$key];
     $douzupelnienia=$value-$logiczny;
+    if ($douzupelnienia!=0){
+        $napis="Coś się nie zgadza";
+    }
     echo "<tr>";
 
     echo "<td>";
@@ -36,7 +39,15 @@ foreach ($cash as $key => $value) {
 echo "<tr>";
 $suma_fizyczna=SumofMoney($cash);
 $suma_logiczna=SumofMoney($money);
-echo "<td>Suma</td><td>$suma_fizyczna zł</td><td>$suma_logiczna zł</td><td></td>";
+if (($suma_fizyczna==$suma_logiczna)&&($napis=="Coś się nie zgadza")){
+    SaveMoney($cash);
+    $napis="Ilość nominałów nie jest prawidłowa, już naprawiam...";
+}else{
+    if($napis!="Wyszstko się zgadza"){
+        SaveMoney($cash);
+    }
+}
+echo "<td>Suma</td><td>$suma_fizyczna zł</td><td>$suma_logiczna zł</td><td>$napis</td>";
 echo "</tr>";
 echo "</table>";
 
