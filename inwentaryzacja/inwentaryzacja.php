@@ -42,10 +42,6 @@ $suma_logiczna=SumofMoney($money);
 if (($suma_fizyczna==$suma_logiczna)&&($napis=="Coś się nie zgadza")){
     SaveMoney($cash);
     $napis="Ilość nominałów nie jest prawidłowa, już naprawiam...";
-}else{
-    if($napis!="Wyszstko się zgadza"){
-        SaveMoney($cash);
-    }
 }
 echo "<td>Suma</td><td>$suma_fizyczna zł</td><td>$suma_logiczna zł</td><td>$napis</td>";
 echo "</tr>";

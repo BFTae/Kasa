@@ -14,18 +14,19 @@ function WithdrawAttempt($money,$withdrawn){
 function Handle($money,$withdrawn){
     $moneypropose=Cashify(0);
     if (isset($_POST['ifbanknotami'])){
-        $withdrawn=Cashify(0);
-        foreach ($withdrawn as $key => $value) {
-            $withdrawn[$key]=$_POST[str_replace(".","_",$key)];
+        foreach ($moneypropose as $key => $value) {
+            $moneypropose[$key]=$_POST[str_replace(".","_",$key)];
         }
-        if(WithdrawAttempt($money,$withdrawn)==false) return;
+        if(WithdrawAttempt($money,$moneypropose)==false){
+            return;
+        } 
+        
     }else{
-        $attempt=Withdraw_GiveChange($money,$withdrawn,true);
-        if (is_array($attempt)==false){
-            echo "Wypłata niemożliwa, brakuje $attempt zł";
+        $moneypropose=Withdraw_GiveChange($money,$withdrawn,true);
+        if (is_array($moneypropose)==false){
+            echo "Wypłata niemożliwa, brakuje $moneypropose zł";
             return;
         }
-        $moneypropose=$attempt;
     }
     echo "Wypłacono:";
     foreach ($moneypropose as $key => $value) {

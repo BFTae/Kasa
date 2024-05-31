@@ -17,11 +17,11 @@ function Handle($money,$deposit,$change){
         $moneypropose[$key]=$cash[$key]+$money[$key];
     }
     if(isset($_POST['ifbanknotami'])){
-        $money=$moneypropose;
-        $changeafter=Withdraw_GiveChange($money,$change,true);
+        $changeafter=Withdraw_GiveChange($moneypropose,$change,true);
     }else{
         $changeafter=Withdraw_GiveChange($money,$change,false);
         SaveMoney($moneypropose);
+
     }
     if (is_array($changeafter)==false){
         echo "Nie będę miał jak wydać z $change zł";
@@ -31,9 +31,11 @@ function Handle($money,$deposit,$change){
     foreach ($changeafter as $key => $value) {
         echo "$key zł: $value<br>";
     }
-    print_r($moneypropose);
-    
-    Logs(number_format(SumofMoney($moneypropose)-SumofMoney($money), 2, '.', ""),true);
+    if(isset($_POST['ifbanknotami'])){
+        Logs(number_format(SumofMoney($cash)-SumofMoney($changeafter), 2, '.', ""),true);
+    }else{
+        Logs(number_format(SumofMoney($moneypropose)-SumofMoney($money), 2, '.', ""),true);
+    }
 }
 require dirname(__DIR__).'\functions.php';
 $money=GetMoney();

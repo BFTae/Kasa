@@ -73,7 +73,6 @@ function Withdraw_GiveChange($money,$withdrawn,$w){
     if ($withdrawn!=0) {
         return $withdrawn;
     }
-    print_r($money);
     if($w){
         SaveMoney($money);
     }
@@ -84,10 +83,10 @@ function Logs($amount,$in){
     
     if($in){
         echo "Zapisuję $amount";
-        fwrite($logs,"Wplata,".date("Y/m/d h:i:s").",$amount\n");
+        fwrite($logs,"Wplata,".date("Y/m/d\Th:i").",$amount\n");
     }else{
         echo "Zapisuję -$amount";
-        fwrite($logs,"Wyplata,".date("Y/m/d h:i:s").",-$amount\n");
+        fwrite($logs,"Wyplata,".date("Y/m/d\Th:i").",-$amount\n");
     }
     fclose($logs);
     return;

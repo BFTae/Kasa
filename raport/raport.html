@@ -11,7 +11,16 @@
         <a href="../wplata/wplata.html">Wpłać</a><br>
         <a href="../wyplata/wyplata.html">Wypłać</a><br>
         <a href="../inwentaryzacja/inwentaryzacja.html">Iwentaryzacja</a><br>
-        <a href="../raport/raport.html">Raport</a>
+        Raportujesz
     </div>
+    <form action="raport.php" method="post">
+        Przedział czasowy: <input type="datetime-local" name="od">-<input type="datetime-local" name="do"><br>
+        Pokazuj: <ul>
+            <li>Wpłaty<input type="checkbox" name="wplaty" checked></li>
+            <li>Wypłaty<input type="checkbox" name="wysplaty" checked></li>
+        </ul>
+        <input type="submit" value="Przejdź do generowania raportu">
+    </form>
+
 </body>
 </html>

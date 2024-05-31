@@ -63,4 +63,4 @@ form.ifbanknotami.addEventListener("change",(event)=>{
 })
 form.addEventListener("submit",(event)=>{
     form.kwota_w.disabled=false
-});
+})
