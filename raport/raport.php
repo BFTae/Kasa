@@ -5,12 +5,12 @@ $naglowki=["co","kiedy","ile"];
 foreach ($logs as $key => $value) {
     $logs[$key]=explode(",",$value);
 }
-$from=date('Y-m-d\TH:i', strtotime($_POST["od"]));
+$from=date('Y-m-d H:i', strtotime($_POST["od"]));
 $to=$_POST["do"];
-echo $from;
 $toshow=[];
 foreach ($logs as $key => $log) {
-    foreach ($log as $klucz => $wartosc) {
-        
+    if ((strtotime(str_replace("/","-",$log[1]))>=strtotime($from) && strtotime(str_replace("/","-",$log[1]))<=strtotime($to))&&((isset($_POST['wplaty'])&&$log[0]=='Wplata')||isset($_POST['wyplaty'])&&$log[0]=='Wyplata')) {
+        print_r($log);
+        echo "<br>";
     }
 }
