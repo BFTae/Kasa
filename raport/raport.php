@@ -10,7 +10,18 @@ $to=$_POST["do"];
 $toshow=[];
 foreach ($logs as $key => $log) {
     if ((strtotime(str_replace("/","-",$log[1]))>=strtotime($from) && strtotime(str_replace("/","-",$log[1]))<=strtotime($to))&&((isset($_POST['wplaty'])&&$log[0]=='Wplata')||isset($_POST['wyplaty'])&&$log[0]=='Wyplata')) {
-        print_r($log);
-        echo "<br>";
+        array_push($toshow,$log);
     }
 }
+echo "<table>";
+foreach ($toshow as $id => $log) {
+    echo "<tr>";
+    foreach ($log as $key => $value) {
+        if ($key==2){
+            $value=number_format(floatval($value), 2, '.', "");
+        }
+        echo "<td>$value</td>";
+    }
+    echo "</tr>";
+}
+echo "</table>";
