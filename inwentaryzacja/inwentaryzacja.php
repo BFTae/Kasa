@@ -1,4 +1,5 @@
 <?php
+echo '<link rel="stylesheet" href="../main.css"> <link rel="stylesheet" href="inwentaryzacja.css">';
 require dirname(__DIR__).'\functions.php';
 
 $cash=Cashify(0);
@@ -46,4 +47,6 @@ if (($suma_fizyczna==$suma_logiczna)&&($napis=="Coś się nie zgadza")){
 echo "<td>Suma</td><td>$suma_fizyczna zł</td><td>$suma_logiczna zł</td><td>$napis</td>";
 echo "</tr>";
 echo "</table>";
-
+echo "<div id='wynik'>";
+echo "<br><a href='../index.html'>Menu</a>";
+echo "</div>";

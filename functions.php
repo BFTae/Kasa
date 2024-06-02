@@ -82,11 +82,11 @@ function Logs($amount,$in){
     $logs=fopen("..\logi.txt","a");
     
     if($in){
-        echo "Zapisuję $amount";
-        fwrite($logs,"Wplata,".date("Y/m/d\Th:i").",$amount\n");
+        echo "Zapisuję: $amount zł";
+        fwrite($logs,"Wplata,".date("Y/m/d\TH:i").",$amount\n");
     }else{
-        echo "Zapisuję -$amount";
-        fwrite($logs,"Wyplata,".date("Y/m/d\Th:i").",-$amount\n");
+        echo "Zapisuję: -$amount zł";
+        fwrite($logs,"Wyplata,".date("Y/m/d\TH:i").",-$amount\n");
     }
     fclose($logs);
     return;

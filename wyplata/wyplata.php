@@ -1,4 +1,6 @@
 <?php
+echo '<link rel="stylesheet" href="../main.css"> <link rel="stylesheet" href="wyplata.css">';
+echo "<div id='wynik'>";
 function WithdrawAttempt($money,$withdrawn){
     foreach ($money as $key => $value) {
         $moneypropose[$key]=$money[$key]-$withdrawn[$key];
@@ -28,7 +30,7 @@ function Handle($money,$withdrawn){
             return;
         }
     }
-    echo "Wypłacono:";
+    echo "Wypłacono:<br>";
     foreach ($moneypropose as $key => $value) {
         echo "$key zł: $value<br>";
     }
@@ -40,3 +42,5 @@ require dirname(__DIR__).'\functions.php';
 $money=GetMoney();
 $withdrawn=$_POST['kwota_w'];
 Handle($money,$withdrawn);
+echo "<br><a href='../index.html'>Menu</a>";
+echo "</div>";

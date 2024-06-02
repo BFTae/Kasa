@@ -1,4 +1,6 @@
 <?php
+echo '<link rel="stylesheet" href="../main.css"> <link rel="stylesheet" href="wplata.css">';
+echo "<div id='wynik'>";
 function DepositMoney($deposit){
     $cash=Cashify(0);
     if(isset($_POST['ifbanknotami'])==false){
@@ -43,3 +45,5 @@ $deposit=$_POST['kwota_dw'];
 $change=$_POST['change'];
 if ($change=="") $change=0;
 Handle($money,$deposit,$change);
+echo "<br><a href='../index.html'>Menu</a>";
+echo "</div>";

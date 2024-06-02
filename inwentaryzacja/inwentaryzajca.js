@@ -32,4 +32,5 @@ for (var key in money) {
 submit=document.createElement("input")
 submit.setAttribute("type","submit")
 submit.setAttribute("value","Sprawdź/Napraw")
+submit.setAttribute("id","submit")
 form.appendChild(submit)

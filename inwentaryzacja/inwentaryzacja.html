@@ -4,19 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kasa</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="inwentaryzacja.css">
 </head>
 <body>
     <div>
-        <a href="../wplata/wplata.html">Wpłać</a><br>
-        <a href="../wyplata/wyplata.html">Wypłać</a><br>
-        Inwentaryzujesz<br>
-        <a href="../raport/raport.html">Raport</a>
+        <div class="menu" style="background-color: lime;"><a href="../wplata/wplata.html"><div>Wpłata</div></a></div>
+        <div class="menu" style="background-color: red;"><a href="../wyplata/wyplata.html"><div>Wypłata</div></a></div>
+        <div class="menu" style="background-color: gray;"><a href="../raport/raport.html"><div>Raport</div></a></div>
     </div>
-    Wprowadź stan fizyczny kasy:
-    <form method="post" action="inwentaryzacja.php">
-        
-    </form>
-    <script src="inwentaryzajca.js"></script>
+    <br>
+    <div id="formularz">
+        Wprowadź stan fizyczny kasy:
+        <form method="post" action="inwentaryzacja.php">
+            
+        </form>
+        <script src="inwentaryzajca.js"></script>
+    </div>
+    
 </body>
 </html>
